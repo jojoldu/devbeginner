@@ -11,12 +11,16 @@ import java.time.LocalDateTime;
 
 @Entity
 public class Reply {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long idx;
 
     @Column
     private long postingIdx;
+
+    @Column
+    private long memberIdx;
 
     @Column
     private String content;
@@ -27,8 +31,9 @@ public class Reply {
     public Reply() {
     }
 
-    public Reply(long postingIdx, String content) {
+    public Reply(long postingIdx, long memberIdx, String content) {
         this.postingIdx = postingIdx;
+        this.memberIdx = memberIdx;
         this.content = content;
         this.updateDate = LocalDateTime.now();
     }
@@ -39,6 +44,10 @@ public class Reply {
 
     public long getPostingIdx() {
         return postingIdx;
+    }
+
+    public long getMemberIdx() {
+        return memberIdx;
     }
 
     public String getContent() {
