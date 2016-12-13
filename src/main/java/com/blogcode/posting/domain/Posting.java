@@ -1,8 +1,7 @@
 package com.blogcode.posting.domain;
 
-import com.blogcode.reply.domain.Reply;
-
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 /**
  * Created by jojoldu@gmail.com on 2016-12-12.
@@ -14,6 +13,13 @@ public class Posting {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long idx;
+
+    @Column
+    private String content;
+
+    @Column
+    private LocalDateTime updateDate;
+
 
 
 }

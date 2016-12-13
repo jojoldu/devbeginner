@@ -8,6 +8,6 @@ import javax.persistence.Entity;
  * Github : http://github.com/jojoldu
  */
 
-@Entity
+
 public class Member {
 }
