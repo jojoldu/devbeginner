@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -48,12 +49,20 @@ public class RepositoryTests {
         }
 
         PageRequest pageRequest = new PageRequest(0, 30);
-        List<Reply> replies = replyRepository.findByPostingIdx(0, pageRequest);
-        assertThat(replies.size(), is(30));
-        assertThat(replies.get(0).getIdx(), is(1L));
+        Stream<Reply> replies = replyRepository.findByPostingIdx(0, pageRequest);
+        assertThat(replies.count(), is(30L));
+        assertThat(replies.findFirst().get().getIdx(), is(1L));
 
-        PageRequest descPageRequest = new PageRequest(1, 30, Sort.Direction.DESC);
-        List<Reply> descReplies = replyRepository.findByPostingIdx(0, descPageRequest);
-        assertThat(descReplies.get(0).getIdx(), is(60L));
+        PageRequest descPageRequest = new PageRequest(1, 30, Sort.Direction.ASC, "updateDate");
+        Stream<Reply> descReplies = replyRepository.findByPostingIdx(0, descPageRequest);
+        assertThat(descReplies.findFirst().get().getIdx(), is(31L));
+        assertThat(descReplies.findAny().get().getIdx(), is(40L));
+
+        PageRequest descPageRequest2 = new PageRequest(1, 30, Sort.Direction.DESC, "updateDate");
+        Stream<Reply> descReplies2 = replyRepository.findByPostingIdx(0, descPageRequest2);
+        assertThat(descReplies2.get(0).getIdx(), is(70L));
+        assertThat(descReplies2.get(29).getIdx(), is(40L));
+
+
     }
 }
