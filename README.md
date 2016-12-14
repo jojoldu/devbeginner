@@ -16,4 +16,10 @@
   - 의도가 명확하지 않은 entity의 상태 변경을 막기 위해
   - 상태변경은 의도가 명확한 메소드명으로 생성할 것
   - ex) cancel(), shuffle() 등
-  
+
+
+### 알게된 사실
+* Pageable의 Desc옵션은 limit 이후가 아니라 limit 이전에 적용된다.
+  - 만약 ```new PageRequest(1, 30, Sort.Direction.DESC, "updateDate");``` 로 생성하면, DESC -> 2번째 페이지 -> 30개가 추출된다.
+  - Repository의 결과는 Stream도 된다.
+  - 추출된 데이터들 사이에서 좀 더 다양한 형태로 변경하고 싶을때는 Stream을 적극적으로 사용한다.

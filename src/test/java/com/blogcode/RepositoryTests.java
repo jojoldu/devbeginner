@@ -13,6 +13,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -49,19 +51,20 @@ public class RepositoryTests {
         }
 
         PageRequest pageRequest = new PageRequest(0, 30);
-        Stream<Reply> replies = replyRepository.findByPostingIdx(0, pageRequest);
-        assertThat(replies.count(), is(30L));
-        assertThat(replies.findFirst().get().getIdx(), is(1L));
+        List<Reply> replies = replyRepository.findByPostingIdx(0, pageRequest).collect(Collectors.toList());
+        assertThat(replies.get(0).getIdx(), is(1L));
+        assertThat(replies.get(29).getIdx(), is(30L));
+        assertThat(replies.size(), is(30));
 
-        PageRequest descPageRequest = new PageRequest(1, 30, Sort.Direction.ASC, "updateDate");
-        Stream<Reply> descReplies = replyRepository.findByPostingIdx(0, descPageRequest);
-        assertThat(descReplies.findFirst().get().getIdx(), is(31L));
-        assertThat(descReplies.findAny().get().getIdx(), is(40L));
+        PageRequest descPageRequest = new PageRequest(1, 30, Sort.Direction.ASC, "idx");
+        List<Reply> descReplies = replyRepository.findByPostingIdx(0, descPageRequest).collect(Collectors.toList());
+        assertThat(descReplies.get(0).getIdx(), is(31L));
+        assertThat(descReplies.get(29).getIdx(), is(60L));
 
-        PageRequest descPageRequest2 = new PageRequest(1, 30, Sort.Direction.DESC, "updateDate");
-        Stream<Reply> descReplies2 = replyRepository.findByPostingIdx(0, descPageRequest2);
+        PageRequest descPageRequest2 = new PageRequest(1, 30, Sort.Direction.DESC, "idx");
+        List<Reply> descReplies2 = replyRepository.findByPostingIdx(0, descPageRequest2).collect(Collectors.toList());
         assertThat(descReplies2.get(0).getIdx(), is(70L));
-        assertThat(descReplies2.get(29).getIdx(), is(40L));
+        assertThat(descReplies2.get(29).getIdx(), is(41L));
 
 
     }
