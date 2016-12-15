@@ -65,7 +65,7 @@ public class RepositoryTests {
         List<Reply> descReplies2 = replyRepository.findByPostingIdx(0, descPageRequest2).collect(Collectors.toList());
         assertThat(descReplies2.get(0).getIdx(), is(70L));
         assertThat(descReplies2.get(29).getIdx(), is(41L));
-
-
     }
+
+
 }
