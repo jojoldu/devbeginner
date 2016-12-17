@@ -1,6 +1,8 @@
 # 초보개발자 모임 제작겸 DDD 연습 프로젝트
 ### 구조
 * 패키지구조
+  - common
+    - converter
   - posting
     - domain
     - repository
