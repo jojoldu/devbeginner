@@ -20,6 +20,16 @@ public class Posting {
     @Column
     private LocalDateTime updateDate;
 
+    public Posting(String content) {
+        this.content = content;
+        this.updateDate = LocalDateTime.now();
+    }
 
+    public long getIdx() {
+        return idx;
+    }
 
+    public String getContent() {
+        return content;
+    }
 }

@@ -1,9 +1,9 @@
 package com.blogcode.member.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.blogcode.reply.domain.Reply;
+
+import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by jojoldu@gmail.com on 2016-12-12.
@@ -18,7 +18,14 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long idx;
 
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Reply> replies;
+
     public long getIdx() {
         return idx;
+    }
+
+    public Set<Reply> getReplies() {
+        return replies;
     }
 }

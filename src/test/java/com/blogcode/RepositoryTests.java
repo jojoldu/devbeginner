@@ -1,5 +1,7 @@
 package com.blogcode;
 
+import com.blogcode.member.domain.Member;
+import com.blogcode.member.repository.MemberRepository;
 import com.blogcode.posting.domain.Posting;
 import com.blogcode.posting.repository.PostingRepository;
 import com.blogcode.reply.domain.Reply;
@@ -13,9 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -35,18 +35,21 @@ public class RepositoryTests {
     @Autowired
     private PostingRepository postingRepository;
 
+    @Autowired
+    private MemberRepository memberRepository;
+
     @Test
     public void test_Java8TimeAndJpa () {
-        replyRepository.save(new Reply(0, 0, "테스트"));
+        replyRepository.save(new Reply(0, new Member(), "테스트"));
     }
 
 
     @Test
-    public void test_replayPaging() {
+    public void test_ReplayPaging() {
 
         for(int i=0;i<10;i++) {
            for(int j=0;j<100;j++){
-               replyRepository.save(new Reply(i, i, "테스트 "+i+" 와 "+j));
+               replyRepository.save(new Reply(i, new Member(), "테스트 "+i+" 와 "+j));
            }
         }
 
@@ -68,4 +71,17 @@ public class RepositoryTests {
     }
 
 
+    @Test
+    public void test_Reply와Member관계() {
+        postingRepository.save(new Posting("테스트입니다."));
+        Member member = memberRepository.save(new Member());
+
+        Posting posting = postingRepository.findAll().get(0);
+        replyRepository.save(new Reply(posting.getIdx(), member, "댓글입니다."));
+
+        Reply reply = replyRepository.findAll().get(0);
+        Member author = memberRepository.findAll().get(0);
+
+        assertThat(reply.getMember().getIdx(), is(author.getIdx()));
+    }
 }

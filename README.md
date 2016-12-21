@@ -22,6 +22,8 @@
 * entity간의 관계에서 애그리거트(entity 군 혹은 집합)가 다른 entity간의 관계는 객체참조가 아닌 ID참조를 하되 같은 애그리거트일 경우엔 객체참조를 한다.
   - 애그리거트가 다른데 객체 참조를 하게 될 경우 물리적 DB 분리시에 분리영역이 모호해진다. 
   - ex) ```replyRepository.findByPostingIdx (posting.getIdx())``` 
+  - 즉 Posting(원글)과 댓글의 관계는 N:1이며, 이를 ManyToOne으로 하지 않고, reply과 postingIdx만 가지도록 한다. (페이징을 위해)
+  - 반대로 Reply와 Member간의 관계는 댓글 작성자가 누구인지 바로 보여줘야 하므로 ManyToOne 양방향으로 객체참조를 한다.
 
 * setter는 생성하지 않는다.
   - 의도가 명확하지 않은 entity의 상태 변경을 막기 위해

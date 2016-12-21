@@ -1,5 +1,7 @@
 package com.blogcode.reply.domain;
 
+import com.blogcode.member.domain.Member;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -19,8 +21,9 @@ public class Reply {
     @Column
     private long postingIdx;
 
-    @Column
-    private long memberIdx;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_reply_member"))
+    private Member member;
 
     @Column
     private String content;
@@ -31,9 +34,9 @@ public class Reply {
     public Reply() {
     }
 
-    public Reply(long postingIdx, long memberIdx, String content) {
+    public Reply(long postingIdx, Member member, String content) {
         this.postingIdx = postingIdx;
-        this.memberIdx = memberIdx;
+        this.member = member;
         this.content = content;
         this.updateDate = LocalDateTime.now();
     }
@@ -46,8 +49,8 @@ public class Reply {
         return postingIdx;
     }
 
-    public long getMemberIdx() {
-        return memberIdx;
+    public Member getMember() {
+        return member;
     }
 
     public String getContent() {
