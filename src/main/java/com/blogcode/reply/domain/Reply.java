@@ -60,4 +60,9 @@ public class Reply {
     public LocalDateTime getUpdateDate() {
         return updateDate;
     }
+
+    public void edit(String content){
+        this.content = content;
+        this.updateDate = LocalDateTime.now();
+    }
 }

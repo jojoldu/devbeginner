@@ -1,5 +1,6 @@
 package com.blogcode.member.domain;
 
+import com.blogcode.posting.domain.Posting;
 import com.blogcode.reply.domain.Reply;
 
 import javax.persistence.*;
@@ -21,11 +22,18 @@ public class Member {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Reply> replies;
 
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Posting> postings;
+
     public long getIdx() {
         return idx;
     }
 
     public Set<Reply> getReplies() {
         return replies;
+    }
+
+    public Set<Posting> getPostings() {
+        return postings;
     }
 }

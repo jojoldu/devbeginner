@@ -1,5 +1,7 @@
 package com.blogcode.posting.domain;
 
+import com.blogcode.member.domain.Member;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -17,10 +19,15 @@ public class Posting {
     @Column
     private String content;
 
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_posting_member"))
+    private Member member;
+
     @Column
     private LocalDateTime updateDate;
 
-    public Posting(String content) {
+    public Posting(Member member, String content) {
+        this.member = member;
         this.content = content;
         this.updateDate = LocalDateTime.now();
     }
@@ -31,5 +38,14 @@ public class Posting {
 
     public String getContent() {
         return content;
+    }
+
+    public Member getMember() {
+        return member;
+    }
+
+    public void edit(String content){
+        this.content = content;
+        this.updateDate = LocalDateTime.now();
     }
 }

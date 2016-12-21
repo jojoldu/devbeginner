@@ -73,8 +73,8 @@ public class RepositoryTests {
 
     @Test
     public void test_Reply와Member관계() {
-        postingRepository.save(new Posting("테스트입니다."));
         Member member = memberRepository.save(new Member());
+        postingRepository.save(new Posting(member, "테스트입니다."));
 
         Posting posting = postingRepository.findAll().get(0);
         replyRepository.save(new Reply(posting.getIdx(), member, "댓글입니다."));
