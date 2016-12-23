@@ -1,5 +1,6 @@
 package com.blogcode.api;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +19,7 @@ public class ApiController {
 
 
     @GetMapping("/user")
-    public Principal getUser(Principal principal){
+    public Principal getUser(Principal principal, Authentication authentication){
         return principal;
     }
 }
