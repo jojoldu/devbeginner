@@ -5,13 +5,13 @@ package com.blogcode.oauth;
  * Blog : http://jojoldu.tistory.com
  * Github : http://github.com/jojoldu
  */
-public class Facebook {
+public class FacebookUser {
     private String name;
     private String picture;
     private String firstName;
     private String lastName;
 
-    public Facebook(String name, String picture, String firstName, String lastName) {
+    public FacebookUser(String name, String picture, String firstName, String lastName) {
         this.name = name;
         this.picture = picture;
         this.firstName = firstName;
