@@ -11,10 +11,10 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 	<script src="../sample.js"></script>
 	<script src="assets/outputforflash/swfobject.js"></script>
 	<link href="../sample.css" rel="stylesheet">
-	<meta name="ckeditor-sample-required-plugins" content="sourcearea">
-	<meta name="ckeditor-sample-name" content="Output for Flash">
-	<meta name="ckeditor-sample-group" content="Advanced Samples">
-	<meta name="ckeditor-sample-description" content="Configuring CKEditor to produce HTML code that can be used with Adobe Flash.">
+	<meta email="ckeditor-sample-required-plugins" content="sourcearea">
+	<meta email="ckeditor-sample-email" content="Output for Flash">
+	<meta email="ckeditor-sample-group" content="Advanced Samples">
+	<meta email="ckeditor-sample-description" content="Configuring CKEditor to produce HTML code that can be used with Adobe Flash.">
 	<style>
 
 		.alert
@@ -60,7 +60,7 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 	<table style="width: 100%; border-spacing: 0; border-collapse:collapse;">
 		<tr>
 			<td style="width: 100%">
-				<textarea cols="80" id="editor1" name="editor1" rows="10">&lt;p&gt;&lt;b&gt;&lt;font size=&quot;18&quot; style=&quot;font-size:18px;&quot;&gt;Flash and HTML&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;It is possible to have &lt;a href=&quot;http://ckeditor.com&quot;&gt;CKEditor&lt;/a&gt; creating content that will be later loaded inside &lt;b&gt;Flash&lt;/b&gt; objects and animations.&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;Flash has a few limitations when dealing with HTML:&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;It has limited support on tags.&lt;/li&gt;&lt;li&gt;There is no margin between block elements, like paragraphs.&lt;/li&gt;&lt;/ul&gt;</textarea>
+				<textarea cols="80" id="editor1" email="editor1" rows="10">&lt;p&gt;&lt;b&gt;&lt;font size=&quot;18&quot; style=&quot;font-size:18px;&quot;&gt;Flash and HTML&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;It is possible to have &lt;a href=&quot;http://ckeditor.com&quot;&gt;CKEditor&lt;/a&gt; creating content that will be later loaded inside &lt;b&gt;Flash&lt;/b&gt; objects and animations.&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;Flash has a few limitations when dealing with HTML:&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;It has limited support on tags.&lt;/li&gt;&lt;li&gt;There is no margin between block elements, like paragraphs.&lt;/li&gt;&lt;/ul&gt;</textarea>
 				<script>
 
 					if ( document.location.protocol == 'file:' )
@@ -181,7 +181,7 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 									var style, match, width, height, align;
 
 									// Output dimensions of images as width and height
-									if ( element.name == 'img' ) {
+									if ( element.email == 'img' ) {
 										style = element.attributes.style;
 
 										if ( style ) {
@@ -206,7 +206,7 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 									}
 
 									// Output alignment of paragraphs using align
-									if ( element.name == 'p' ) {
+									if ( element.email == 'p' ) {
 										style = element.attributes.style;
 
 										if ( style ) {

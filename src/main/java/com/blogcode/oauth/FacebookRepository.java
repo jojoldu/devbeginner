@@ -1,7 +1,7 @@
 package com.blogcode.oauth;
 
+import com.blogcode.oauth.domain.Facebook;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 /**
  * Created by jojoldu@gmail.com on 2016-12-23.
@@ -9,5 +9,6 @@ import org.springframework.stereotype.Repository;
  * Github : http://github.com/jojoldu
  */
 
-public interface FacebookRepository  {
+public interface FacebookRepository extends JpaRepository<Facebook, Long> {
+    Facebook findByEmail(String email);
 }

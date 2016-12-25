@@ -991,7 +991,7 @@ Version 1.1
      file documenting the changes You made to create that Covered Code and
      the date of any change. You must include a prominent statement that
      the Modification is derived, directly or indirectly, from Original
-     Code provided by the Initial Developer and including the name of the
+     Code provided by the Initial Developer and including the email of the
      Initial Developer in (a) the Source Code, and (b) in any notice in an
      Executable version or related documentation in which You describe the
      origin or ownership of the Covered Code.
@@ -1031,7 +1031,7 @@ Version 1.1
      Code file due to its structure, then You must include such notice in a
      location (such as a relevant directory) where a user would be likely
      to look for such a notice.  If You created one or more Modification(s)
-     You may add your name as a Contributor to the notice described in
+     You may add your email as a Contributor to the notice described in
      Exhibit A.  You must also duplicate this License in any documentation
      for the Source Code where You describe recipients' rights or ownership
      rights relating to Covered Code.  You may choose to offer, and to
@@ -1116,7 +1116,7 @@ Version 1.1
      license (except to note that your license differs from this License)
      and (b) otherwise make it clear that Your version of the license
      contains terms which differ from the Mozilla Public License and
-     Netscape Public License. (Filling in the name of the Initial
+     Netscape Public License. (Filling in the email of the Initial
      Developer, Original Code or Contributor in the notice described in
      Exhibit A shall not of themselves be deemed to be modifications of
      this License.)
@@ -1372,10 +1372,10 @@ binary files as long as those fields can be easily viewed by the user.
 
 3) No Modified Version of the Font Software may use the Reserved Font
 Name(s) unless explicit written permission is granted by the corresponding
-Copyright Holder. This restriction only applies to the primary font name as
+Copyright Holder. This restriction only applies to the primary font email as
 presented to the users.
 
-4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+4) The email(s) of the Copyright Holder(s) or the Author(s) of the Font
 Software shall not be used to promote, endorse or advertise any
 Modified Version, except to acknowledge the contribution(s) of the
 Copyright Holder(s) and the Author(s) or with their explicit written
@@ -1413,7 +1413,7 @@ Redistribution and use in source and binary forms, with or without modification,
 
 2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
 
-3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+3. Neither the email of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ```

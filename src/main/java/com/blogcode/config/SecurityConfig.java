@@ -1,21 +1,10 @@
 package com.blogcode.config;
 
-import com.blogcode.config.handler.CustomAuthenticationSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
-import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.oauth2.client.OAuth2ClientContext;
-import org.springframework.security.oauth2.client.OAuth2RestTemplate;
-import org.springframework.security.oauth2.client.filter.OAuth2ClientAuthenticationProcessingFilter;
-import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
-import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeResourceDetails;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfToken;
@@ -41,8 +30,10 @@ import java.io.IOException;
 
 @Configuration
 @EnableWebSecurity
-@EnableOAuth2Client
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private Filter ssoFilter;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -51,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated().and().logout().logoutSuccessUrl("/").permitAll().and().csrf()
                 .and().csrf().csrfTokenRepository(csrfTokenRepository())
                 .and().addFilterAfter(csrfHeaderFilter(), CsrfFilter.class)
-                .addFilterBefore(ssoFilter(), BasicAuthenticationFilter.class);
+                .addFilterBefore(ssoFilter, BasicAuthenticationFilter.class);
         // @formatter:on
     }
     private Filter csrfHeaderFilter() {
@@ -80,30 +71,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return repository;
     }
 
-    @Autowired
-    private OAuth2ClientContext oauth2ClientContext;
 
-    @Autowired
-    private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
-
-    private Filter ssoFilter() {
-        OAuth2ClientAuthenticationProcessingFilter facebookFilter = new OAuth2ClientAuthenticationProcessingFilter("/login");
-        OAuth2RestTemplate facebookTemplate = new OAuth2RestTemplate(facebook(), oauth2ClientContext);
-        facebookFilter.setRestTemplate(facebookTemplate);
-        facebookFilter.setTokenServices(new UserInfoTokenServices(facebookResource().getUserInfoUri(), facebook().getClientId()));
-        facebookFilter.setAuthenticationSuccessHandler(customAuthenticationSuccessHandler);
-        return facebookFilter;
-    }
-
-    @Bean
-    @ConfigurationProperties("security.oauth2.client")
-    public OAuth2ProtectedResourceDetails facebook() {
-        return new AuthorizationCodeResourceDetails();
-    }
-
-    @Bean
-    @ConfigurationProperties("security.oauth2.resource")
-    public ResourceServerProperties facebookResource() {
-        return new ResourceServerProperties();
-    }
 }

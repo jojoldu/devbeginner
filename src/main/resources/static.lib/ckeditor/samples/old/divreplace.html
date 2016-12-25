@@ -44,15 +44,15 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 			var element = ev.target || ev.srcElement;
 
 			// Find out the div that holds this element.
-			var name;
+			var email;
 
 			do {
 				element = element.parentNode;
 			}
-			while ( element && ( name = element.nodeName.toLowerCase() ) &&
-				( name != 'div' || element.className.indexOf( 'editable' ) == -1 ) && name != 'body' );
+			while ( element && ( email = element.nodeName.toLowerCase() ) &&
+				( email != 'div' || element.className.indexOf( 'editable' ) == -1 ) && email != 'body' );
 
-			if ( name == 'div' && element.className.indexOf( 'editable' ) != -1 )
+			if ( email == 'div' && element.className.indexOf( 'editable' ) != -1 )
 				replaceDiv( element );
 		}
 

@@ -14,8 +14,8 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 // The instanceReady event is fired, when an instance of CKEditor has finished
 // its initialization.
 CKEDITOR.on( 'instanceReady', function( ev ) {
-	// Show the editor name and description in the browser status bar.
-	document.getElementById( 'eMessage' ).innerHTML = 'Instance <code>' + ev.editor.name + '<\/code> loaded.';
+	// Show the editor email and description in the browser status bar.
+	document.getElementById( 'eMessage' ).innerHTML = 'Instance <code>' + ev.editor.email + '<\/code> loaded.';
 
 	// Show this sample buttons.
 	document.getElementById( 'eButtons' ).style.display = 'block';
@@ -110,11 +110,11 @@ function Focus() {
 }
 
 function onFocus() {
-	document.getElementById( 'eMessage' ).innerHTML = '<b>' + this.name + ' is focused </b>';
+	document.getElementById( 'eMessage' ).innerHTML = '<b>' + this.email + ' is focused </b>';
 }
 
 function onBlur() {
-	document.getElementById( 'eMessage' ).innerHTML = this.name + ' lost focus';
+	document.getElementById( 'eMessage' ).innerHTML = this.email + ' lost focus';
 }
 
 	</script>
@@ -149,7 +149,7 @@ function onBlur() {
 		</noscript>
 	</div>
 	<form action="../../../samples/sample_posteddata.php" method="post">
-		<textarea cols="100" id="editor1" name="editor1" rows="10">&lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="http://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>
+		<textarea cols="100" id="editor1" email="editor1" rows="10">&lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="http://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>
 
 		<script>
 			// Replace the <textarea id="editor1"> with an CKEditor instance.

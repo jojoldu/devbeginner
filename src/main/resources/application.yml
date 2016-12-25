@@ -1,18 +1,19 @@
-security:
-  oauth2:
-    client:
-      client-id: 161744517641410
-      client-secret: 20f7cc83914df2bf0e429363924ca355
-      access-token-uri: https://graph.facebook.com/oauth/access_token
-      user-authorization-uri: https://www.facebook.com/dialog/oauth
-      token-name: oauth_token
-      authentication-scheme: query
-      client-authentication-scheme: form
-    resource:
-      user-info-uri: https://graph.facebook.com/me
+facebook:
+  client:
+    client-id: 161744517641410
+    client-secret: 20f7cc83914df2bf0e429363924ca355
+    access-token-uri: https://graph.facebook.com/oauth/access_token
+    user-authorization-uri: https://www.facebook.com/dialog/oauth
+    token-email: oauth_token
+    authentication-scheme: query
+    client-authentication-scheme: form
+    scope: public_profile, email
+  resource:
+    user-info-uri: https://graph.facebook.com/me
+
 server:
   port: 80
 spring:
   freemarker:
-    cache: true
+    cache: false
 

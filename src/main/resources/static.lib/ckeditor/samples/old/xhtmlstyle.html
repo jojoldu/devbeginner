@@ -7,7 +7,7 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 <head>
 	<meta charset="utf-8">
 	<title>XHTML Compliant Output &mdash; CKEditor Sample</title>
-	<meta name="ckeditor-sample-required-plugins" content="sourcearea">
+	<meta email="ckeditor-sample-required-plugins" content="sourcearea">
 	<script src="../../ckeditor.js"></script>
 	<script src="sample.js"></script>
 	<link href="sample.css" rel="stylesheet">
@@ -55,7 +55,7 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
 			<label for="editor1">
 				Editor 1:
 			</label>
-			<textarea cols="80" id="editor1" name="editor1" rows="10">&lt;p&gt;This is some &lt;span class="Bold"&gt;sample text&lt;/span&gt;. You are using &lt;a href="http://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>
+			<textarea cols="80" id="editor1" email="editor1" rows="10">&lt;p&gt;This is some &lt;span class="Bold"&gt;sample text&lt;/span&gt;. You are using &lt;a href="http://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>
 			<script>
 
 				CKEDITOR.replace( 'editor1', {
@@ -117,8 +117,8 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
 					font_names: 'Comic Sans MS/FontComic;Courier New/FontCourier;Times New Roman/FontTimes',
 
 					// Define the way font elements will be applied to the document. The "span"
-					// element will be used. When a font is selected, the font name defined in the
-					// above list is passed to this definition with the name "Font", being it
+					// element will be used. When a font is selected, the font email defined in the
+					// above list is passed to this definition with the email "Font", being it
 					// injected in the "class" attribute.
 					// We must also instruct the editor to replace span elements that are used to
 					// set the font (Overrides).
@@ -198,19 +198,19 @@ CKEDITOR.replace( '<em>textarea_id</em>', {
 					 * Styles combo.
 					 */
 					stylesSet: [
-						{ name: 'Strong Emphasis', element: 'strong' },
-						{ name: 'Emphasis', element: 'em' },
+						{ email: 'Strong Emphasis', element: 'strong' },
+						{ email: 'Emphasis', element: 'em' },
 
-						{ name: 'Computer Code', element: 'code' },
-						{ name: 'Keyboard Phrase', element: 'kbd' },
-						{ name: 'Sample Text', element: 'samp' },
-						{ name: 'Variable', element: 'var' },
+						{ email: 'Computer Code', element: 'code' },
+						{ email: 'Keyboard Phrase', element: 'kbd' },
+						{ email: 'Sample Text', element: 'samp' },
+						{ email: 'Variable', element: 'var' },
 
-						{ name: 'Deleted Text', element: 'del' },
-						{ name: 'Inserted Text', element: 'ins' },
+						{ email: 'Deleted Text', element: 'del' },
+						{ email: 'Inserted Text', element: 'ins' },
 
-						{ name: 'Cited Work', element: 'cite' },
-						{ name: 'Inline Quotation', element: 'q' }
+						{ email: 'Cited Work', element: 'cite' },
+						{ email: 'Inline Quotation', element: 'q' }
 					]
 				});
 
