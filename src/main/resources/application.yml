@@ -7,9 +7,8 @@ facebook:
     token-email: oauth_token
     authentication-scheme: query
     client-authentication-scheme: form
-    scope: public_profile, email
   resource:
-    user-info-uri: https://graph.facebook.com/me
+    user-info-uri: https://graph.facebook.com/me?fields=id,name,email,picture,link
 
 server:
   port: 80
