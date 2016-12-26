@@ -38,12 +38,8 @@ public class FacebookUserDetails implements UserDetails {
         return this.facebook.getEmail();
     }
 
-    public String getFirstName() {
-        return this.facebook.getFirstName();
-    }
-
-    public String getLastName() {
-        return this.facebook.getLastName();
+    public Facebook getFacebook() {
+        return this.facebook;
     }
 
     @Override

@@ -1,8 +1,7 @@
 package com.blogcode.oauth.handler;
 
-import com.blogcode.oauth.domain.Facebook;
+import com.blogcode.oauth.domain.FacebookUserDetails;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
@@ -24,8 +23,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
         //implementation
-        OAuth2Authentication oAuth2Authentication = (OAuth2Authentication) authentication.getPrincipal();
-        Facebook facebookUser = (Facebook) oAuth2Authentication.getDetails();
+        FacebookUserDetails facebookUserDetails = (FacebookUserDetails) authentication.getPrincipal();
         System.out.println();
     }
 }

@@ -3,6 +3,8 @@ package com.blogcode.oauth.domain;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * Created by jojoldu@gmail.com on 2016-12-22.
@@ -16,25 +18,43 @@ public class Facebook {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long idx;
 
-    @Column
+    @Column(nullable = false)
+    private String id;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
     @Email
     private String email;
+
     @Column
     private String picture;
-    @Column
-    private String firstName;
-    @Column
-    private String lastName;
 
-    public Facebook(String email, String picture, String firstName, String lastName) {
+    public Facebook(Map<String, Object> userDetails) {
+        this.id = userDetails.get("id").toString();
+        this.name = userDetails.get("name").toString();
+        this.email = userDetails.get("email").toString();
+
+    }
+
+    public Facebook(String id, String name, String email, String picture) {
+        this.id = id;
+        this.name = name;
         this.email = email;
         this.picture = picture;
-        this.firstName = firstName;
-        this.lastName = lastName;
     }
 
     public long getIdx() {
         return idx;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getEmail() {
@@ -43,13 +63,5 @@ public class Facebook {
 
     public String getPicture() {
         return picture;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
     }
 }
