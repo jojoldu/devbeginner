@@ -1,7 +1,7 @@
 package com.blogcode.oauth;
 
 import com.blogcode.oauth.domain.Facebook;
-import com.blogcode.oauth.domain.FacebookUserDetails;
+import com.blogcode.oauth.pojo.FacebookUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
  * Blog : http://jojoldu.tistory.com
  * Github : http://github.com/jojoldu
  */
+
 @Service
 public class FacebookDetailsService implements UserDetailsService {
 

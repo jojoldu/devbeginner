@@ -1,6 +1,7 @@
-package com.blogcode.oauth.domain;
+package com.blogcode.oauth.pojo;
 
 
+import com.blogcode.oauth.domain.Facebook;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
