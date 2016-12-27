@@ -11,7 +11,7 @@ facebook:
     user-info-uri: https://graph.facebook.com/me?fields=id,name,email,picture,link
 
 server:
-  port: 80
+  port: 8080
 spring:
   freemarker:
     cache: false
