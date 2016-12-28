@@ -1,6 +1,8 @@
 package com.blogcode;
 
+import com.blogcode.oauth.domain.Facebook;
 import org.json.JSONObject;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.LinkedHashMap;
@@ -18,17 +20,26 @@ import static org.hamcrest.Matchers.is;
 
 public class JavaTests {
 
-    @Test
-    public void test_Optional계층구조() {
-        Map<String, Object> details = new LinkedHashMap<>();
-        Map<String, Object> picture = new LinkedHashMap<>();
-        Map<String, String> data = new LinkedHashMap<>();
+    private Map<String, Object> details = new LinkedHashMap<>();
+    private Map<String, Object> picture = new LinkedHashMap<>();
+    private Map<String, String> data = new LinkedHashMap<>();
+
+
+    @Before
+    public void setup() {
 
         data.put("name", "초보개발자모임");
         data.put("url", "https://www.facebook.com/devbeginner/");
         picture.put("data", data);
         details.put("picture", picture);
+        details.put("email", "jojoldu@gmail.com");
+        details.put("id", "jojoldu");
+        details.put("link", "http://jojoldu.tistory.com");
+        details.put("name", "jojoldu");
+    }
 
+    @Test
+    public void test_Optional계층구조() {
         JSONObject jsonObject = new JSONObject(details);
         assertThat(jsonObject.getJSONObject("picture").getJSONObject("data").get("url"), is("https://www.facebook.com/devbeginner/"));
         assertThat(getUrl(jsonObject), is("https://www.facebook.com/devbeginner/"));
@@ -45,4 +56,12 @@ public class JavaTests {
                 .map(d -> d.get("url").toString())
                 .orElse("");
     }
+
+    @Test
+    public void test_Facebook생성자() {
+        Facebook facebook = new Facebook(details);
+        assertThat(facebook.getEmail(), is("jojoldu@gmail.com"));
+        assertThat(facebook.getPicture(), is("https://www.facebook.com/devbeginner/"));
+    }
+
 }

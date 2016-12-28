@@ -1,12 +1,15 @@
 package com.blogcode.oauth.domain;
 
 import com.blogcode.oauth.pojo.FacebookField;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
 import java.util.Map;
 import java.util.Optional;
 import org.json.JSONObject;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 
 /**
  * Created by jojoldu@gmail.com on 2016-12-22.
@@ -33,12 +36,20 @@ public class Facebook {
     @Column
     private String picture;
 
-    public Facebook(Map<String, Object> userDetails) {
-        this.id = userDetails.get(FacebookField.ID.getName()).toString();
-        this.name = userDetails.get(FacebookField.NAME.getName()).toString();
-        this.email = userDetails.get(FacebookField.EMAIL.getName()).toString();
-        this.picture = extractUrl(userDetails);
+    public Facebook(ObjectMapper objectMapper, Authentication authentication) {
+        OAuth2Authentication oAuth2Authentication = (OAuth2Authentication) authentication;
+        Object details = oAuth2Authentication.getUserAuthentication().getDetails();
+
+        @SuppressWarnings("unchecked")
+        Map<String, Object> detailsMap = objectMapper.convertValue(details, Map.class);
+
+        this.id = detailsMap.get(FacebookField.ID.getName()).toString();
+        this.name = detailsMap.get(FacebookField.NAME.getName()).toString();
+        this.email = detailsMap.get(FacebookField.EMAIL.getName()).toString();
+        this.picture = extractUrl(detailsMap);
+
     }
+
 
     private String extractUrl (Map<String, Object> userDetails) {
         return Optional.of(new JSONObject(userDetails))
