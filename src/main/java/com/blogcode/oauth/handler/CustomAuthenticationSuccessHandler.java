@@ -1,5 +1,6 @@
 package com.blogcode.oauth.handler;
 
+import com.blogcode.oauth.FacebookRepository;
 import com.blogcode.oauth.domain.Facebook;
 import com.blogcode.oauth.pojo.FacebookUserDetails;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,10 +30,20 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     @Autowired
     private ObjectMapper objectMapper;
 
+    @Autowired
+    private FacebookRepository facebookRepository;
+
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
-        Facebook facebook = new Facebook(objectMapper, authentication);
-        System.out.println();
+
+        Facebook requestFacebook = new Facebook(objectMapper, authentication);
+        Facebook existingFacebook = facebookRepository.findByEmail(requestFacebook.getEmail());
+
+        if(existingFacebook == null){
+            facebookRepository.save(requestFacebook);
+        }
+
+        response.sendRedirect("/");
     }
 }

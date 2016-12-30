@@ -15,4 +15,12 @@ server:
 spring:
   freemarker:
     cache: false
+  jpa:
+    show-sql: true
+  h2:
+    console:
+      path: /h2-console
+  devtools:
+    livereload:
+      enabled: true
 

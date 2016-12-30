@@ -38,8 +38,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // @formatter:off
-        http.antMatcher("/**").authorizeRequests().antMatchers("/", "/login**", "/js/**", "/css/**", "/images/**").permitAll().anyRequest()
-                .authenticated().and().logout().logoutSuccessUrl("/").permitAll().and().csrf()
+        http.antMatcher("/**")
+                .authorizeRequests()
+                    .antMatchers("/", "/me", "/login**", "/js/**", "/css/**", "/images/**")
+                    .permitAll()
+                .anyRequest()
+                    .authenticated()
+                .and().logout().logoutSuccessUrl("/").permitAll()
                 .and().csrf().csrfTokenRepository(csrfTokenRepository())
                 .and().addFilterAfter(csrfHeaderFilter(), CsrfFilter.class)
                 .addFilterBefore(ssoFilter, BasicAuthenticationFilter.class);

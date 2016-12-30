@@ -1,6 +1,7 @@
 package com.blogcode;
 
 import com.blogcode.oauth.domain.Facebook;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
@@ -55,13 +56,6 @@ public class JavaTests {
                 .map(p -> p.getJSONObject("data"))
                 .map(d -> d.get("url").toString())
                 .orElse("");
-    }
-
-    @Test
-    public void test_Facebook생성자() {
-        Facebook facebook = new Facebook(details);
-        assertThat(facebook.getEmail(), is("jojoldu@gmail.com"));
-        assertThat(facebook.getPicture(), is("https://www.facebook.com/devbeginner/"));
     }
 
 }
