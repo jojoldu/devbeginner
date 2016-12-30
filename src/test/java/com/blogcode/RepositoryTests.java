@@ -84,4 +84,9 @@ public class RepositoryTests {
 
         assertThat(reply.getMember().getIdx(), is(author.getIdx()));
     }
+
+    @Test
+    public void test_Facebook과Member관계 () {
+
+    }
 }

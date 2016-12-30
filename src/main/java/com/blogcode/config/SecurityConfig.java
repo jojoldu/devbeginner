@@ -59,8 +59,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated()
                 .and().logout().logoutSuccessUrl("/").permitAll()
-                .and().headers().frameOptions().sameOrigin()
-                .and().csrf().disable()
+                .and().headers().frameOptions().sameOrigin() //Invalid CSRF Token 'null' was found on the request parameter '_csrf' or header 'X-CSRF-TOKEN'을 회피하기 위
+                .and().csrf().disable() // h2-console 접속을 위해
                 .addFilterBefore(ssoFilter, BasicAuthenticationFilter.class);
     }
 
