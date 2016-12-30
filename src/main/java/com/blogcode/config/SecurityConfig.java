@@ -2,6 +2,7 @@ package com.blogcode.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -35,21 +36,47 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private Filter ssoFilter;
 
+    @Autowired
+    private Environment env;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // @formatter:off
+        // h2 console 때문에 security 설정을 배포 환경에 따라 분리
+        String profile = env.getActiveProfiles()[0];
+
+        if("local".equals(profile)){
+            this.localConfigure(http);
+        } else if("real".equals(profile)) {
+            this.realConfigure(http);
+        }
+    }
+
+    private void localConfigure(HttpSecurity http) throws Exception{
         http.antMatcher("/**")
                 .authorizeRequests()
-                    .antMatchers("/", "/me", "/login**", "/js/**", "/css/**", "/images/**")
-                    .permitAll()
+                .antMatchers("/", "/me","/h2-console**", "/login**", "/js/**", "/css/**", "/images/**")
+                .permitAll()
                 .anyRequest()
-                    .authenticated()
+                .authenticated()
+                .and().logout().logoutSuccessUrl("/").permitAll()
+                .and().headers().frameOptions().sameOrigin()
+                .and().csrf().disable()
+                .addFilterBefore(ssoFilter, BasicAuthenticationFilter.class);
+    }
+
+    private void realConfigure(HttpSecurity http) throws Exception{
+        http.antMatcher("/**")
+                .authorizeRequests()
+                .antMatchers("/", "/me", "/login**", "/js/**", "/css/**", "/images/**")
+                .permitAll()
+                .anyRequest()
+                .authenticated()
                 .and().logout().logoutSuccessUrl("/").permitAll()
                 .and().csrf().csrfTokenRepository(csrfTokenRepository())
                 .and().addFilterAfter(csrfHeaderFilter(), CsrfFilter.class)
                 .addFilterBefore(ssoFilter, BasicAuthenticationFilter.class);
-        // @formatter:on
     }
+
     private Filter csrfHeaderFilter() {
         return new OncePerRequestFilter() {
             @Override
