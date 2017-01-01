@@ -124,3 +124,5 @@
 * new 커스텀Exception()를 아끼지 말자.
   - 생각보다 많은 샘플 코드에서 new 커스텀 Exception을 발생시키고 있다.
   - 정상적인 경우를 제외하면 ```return null;``` 이 아니라 ```throw new 커스텀Exception```을 하는게 더 어울린다.
+
+* Spring Data Jpa의 경우 각 Entity 클래스들은 디폴트 생성자가 필수다.

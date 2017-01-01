@@ -2,6 +2,7 @@ package com.blogcode.member.domain;
 
 import com.blogcode.posting.domain.Posting;
 import com.blogcode.reply.domain.Reply;
+import javafx.geometry.Pos;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -13,7 +14,9 @@ import java.util.Set;
  */
 
 @Entity
-public class Member {
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "TYPE")
+public abstract class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,5 +38,9 @@ public class Member {
 
     public Set<Posting> getPostings() {
         return postings;
+    }
+
+    public void writePosting(Posting posting){
+       this.postings.add(posting);
     }
 }

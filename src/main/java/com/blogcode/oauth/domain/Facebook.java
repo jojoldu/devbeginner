@@ -1,5 +1,6 @@
 package com.blogcode.oauth.domain;
 
+import com.blogcode.member.domain.Member;
 import com.blogcode.oauth.pojo.FacebookField;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hibernate.validator.constraints.Email;
@@ -18,10 +19,9 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
  */
 
 @Entity
-public class Facebook {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long idx;
+@DiscriminatorValue("FACEBOOK")
+public class Facebook extends Member{
+
 
     @Column(nullable = false)
     private String id;
@@ -35,6 +35,16 @@ public class Facebook {
 
     @Column
     private String picture;
+
+    public Facebook() {
+    }
+
+    public Facebook(String id, String name, String email, String picture) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.picture = picture;
+    }
 
     public Facebook(ObjectMapper objectMapper, Authentication authentication) {
         OAuth2Authentication oAuth2Authentication = (OAuth2Authentication) authentication;
@@ -59,15 +69,9 @@ public class Facebook {
                 .orElse("");
     }
 
-    public Facebook(String id, String name, String email, String picture) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.picture = picture;
-    }
 
     public long getIdx() {
-        return idx;
+        return super.getIdx();
     }
 
     public String getId() {

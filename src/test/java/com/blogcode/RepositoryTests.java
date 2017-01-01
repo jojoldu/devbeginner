@@ -2,16 +2,20 @@ package com.blogcode;
 
 import com.blogcode.member.domain.Member;
 import com.blogcode.member.repository.MemberRepository;
+import com.blogcode.oauth.domain.Facebook;
 import com.blogcode.posting.domain.Posting;
 import com.blogcode.posting.repository.PostingRepository;
 import com.blogcode.reply.domain.Reply;
 import com.blogcode.reply.repository.ReplyRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
@@ -36,11 +40,21 @@ public class RepositoryTests {
     private PostingRepository postingRepository;
 
     @Autowired
-    private MemberRepository memberRepository;
+    private MemberRepository<Member> memberRepository;
+
+    @Autowired
+    private MemberRepository<Facebook> facebookRepository;
+
+    private Facebook facebook;
+
+    @Before
+    public void setup () {
+        facebook = new Facebook("이동욱", "jojoldu", "jojoldu@gmail.com", "http://facebook/image");
+    }
 
     @Test
     public void test_Java8TimeAndJpa () {
-        replyRepository.save(new Reply(0, new Member(), "테스트"));
+        replyRepository.save(new Reply(0, facebook, "테스트"));
     }
 
 
@@ -49,7 +63,7 @@ public class RepositoryTests {
 
         for(int i=0;i<10;i++) {
            for(int j=0;j<100;j++){
-               replyRepository.save(new Reply(i, new Member(), "테스트 "+i+" 와 "+j));
+               replyRepository.save(new Reply(i, facebook, "테스트 "+i+" 와 "+j));
            }
         }
 
@@ -73,7 +87,7 @@ public class RepositoryTests {
 
     @Test
     public void test_Reply와Member관계() {
-        Member member = memberRepository.save(new Member());
+        Member member = memberRepository.save(facebook);
         postingRepository.save(new Posting(member, "테스트입니다."));
 
         Posting posting = postingRepository.findAll().get(0);
@@ -88,5 +102,11 @@ public class RepositoryTests {
     @Test
     public void test_Facebook과Member관계 () {
 
+        Posting posting = new Posting(facebook, "facebook");
+        postingRepository.save(posting);
+
+        Member member = postingRepository.findAll().get(0).getMember();
+        Facebook facebook = facebookRepository.findAll().get(0);
+        assertThat(postingRepository.findAll().get(0).getMember().getIdx(), is(1L));
     }
 }

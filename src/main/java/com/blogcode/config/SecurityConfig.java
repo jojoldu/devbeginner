@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // h2 console 때문에 security 설정을 배포 환경에 따라 분리
-        String profile = env.getActiveProfiles()[0];
+        String profile = env.getActiveProfiles().length > 0? env.getActiveProfiles()[0] : "local";
 
         if("local".equals(profile)){
             this.localConfigure(http);
