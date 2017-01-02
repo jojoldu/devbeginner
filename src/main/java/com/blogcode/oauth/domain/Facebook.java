@@ -11,6 +11,7 @@ import java.util.Optional;
 import org.json.JSONObject;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * Created by jojoldu@gmail.com on 2016-12-22.
@@ -21,7 +22,6 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
 @Entity
 @DiscriminatorValue("FACEBOOK")
 public class Facebook extends Member{
-
 
     @Column(nullable = false)
     private String id;
@@ -69,10 +69,6 @@ public class Facebook extends Member{
                 .orElse("");
     }
 
-
-    public long getIdx() {
-        return super.getIdx();
-    }
 
     public String getId() {
         return id;

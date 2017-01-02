@@ -10,12 +10,16 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Transactional
 public class ApplicationTests {
 
 	@Autowired
@@ -42,6 +46,9 @@ public class ApplicationTests {
 		Facebook savedFacebook = facebookRepository.findAll().get(0);
 		assertThat(savedFacebook.getId(), is(facebook.getId()));
 		postingService.write(content, facebook);
+
+		List<Facebook> facebooks  = facebookRepository.findAll();
+		assertThat(facebooks.size(), is(1));
 	}
 
 

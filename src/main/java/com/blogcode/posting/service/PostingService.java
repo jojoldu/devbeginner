@@ -22,9 +22,6 @@ public class PostingService {
     @Autowired
     private PostingRepository postingRepository;
 
-    @Autowired
-    private MemberRepository<Member> memberRepository;
-
     public void write(String content, Member member) {
         Posting posting = new Posting(member, content);
         postingRepository.save(posting);

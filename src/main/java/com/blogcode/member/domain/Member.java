@@ -5,6 +5,7 @@ import com.blogcode.reply.domain.Reply;
 import javafx.geometry.Pos;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -23,10 +24,10 @@ public abstract class Member {
     private long idx;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Reply> replies;
+    private Set<Reply> replies = new HashSet<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Posting> postings;
+    private Set<Posting> postings = new HashSet<>();
 
     public long getIdx() {
         return idx;
