@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '1.4.2.RELEASE'
+		springBootVersion = '1.5.2.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -12,7 +12,7 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
-apply plugin: 'spring-boot'
+apply plugin: 'org.springframework.boot'
 
 jar {
 	baseName = 'devbeginner'
@@ -25,6 +25,7 @@ repositories {
 	mavenCentral()
 }
 
+ext['hibernate.version'] = '5.2.9.Final'
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')

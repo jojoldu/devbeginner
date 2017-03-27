@@ -4,6 +4,7 @@ import com.blogcode.oauth.domain.Facebook;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONObject;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.LinkedHashMap;
@@ -40,6 +41,7 @@ public class JavaTests {
     }
 
     @Test
+    @Ignore
     public void test_Optional계층구조() {
         JSONObject jsonObject = new JSONObject(details);
         assertThat(jsonObject.getJSONObject("picture").getJSONObject("data").get("url"), is("https://www.facebook.com/devbeginner/"));

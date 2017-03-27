@@ -9,6 +9,7 @@ import com.blogcode.reply.domain.Reply;
 import com.blogcode.reply.repository.ReplyRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,7 @@ public class RepositoryTests {
 
 
     @Test
+    @Ignore
     public void test_ReplayPaging() {
 
         for(int i=0;i<10;i++) {
