@@ -1,4 +1,10 @@
 # 초보개발자 모임 제작겸 DDD 연습 프로젝트
+
+실제 구현 프로젝트는 다음 프로젝트에서 진행중
+
+* https://github.com/jojoldu/dev-beginner-group
+* https://github.com/jojoldu/bns
+
 ### 구조
 * 패키지구조
   - common
